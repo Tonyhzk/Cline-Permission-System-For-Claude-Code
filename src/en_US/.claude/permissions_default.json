@@ -1,0 +1,160 @@
+{
+  "_comment": "Claude Code Permission System Unified Configuration",
+  "_description": {
+    "modes": "Permission switch configuration for three CLI modes",
+    "categories": "Command classification definitions (supports Glob wildcards * and ?)",
+    "notifications": "Notification system configuration"
+  },
+
+  "modes": {
+    "plan": {
+      "read": 1,
+      "readAllFiles": 0,
+      "edit": 0,
+      "editAllFiles": 0,
+      "risky": 0,
+      "riskyAllFiles": 0,
+      "useWeb": 1,
+      "useMcp": 1,
+      "allowUnknownCommand": 0,
+      "globalAllow": 1,
+      "globalDeny": 1
+    },
+    "default": {
+      "read": 1,
+      "readAllFiles": 0,
+      "edit": 0,
+      "editAllFiles": 0,
+      "risky": 0,
+      "riskyAllFiles": 0,
+      "useWeb": 1,
+      "useMcp": 1,
+      "allowUnknownCommand": 0,
+      "globalAllow": 1,
+      "globalDeny": 1
+    },
+    "acceptEdits": {
+      "read": 1,
+      "readAllFiles": 0,
+      "edit": 1,
+      "editAllFiles": 0,
+      "risky": 0,
+      "riskyAllFiles": 0,
+      "useWeb": 1,
+      "useMcp": 1,
+      "allowUnknownCommand": 0,
+      "globalAllow": 1,
+      "globalDeny": 1
+    }
+  },
+
+  "categories": {
+    "read": {
+      "tools": ["Read", "Glob", "Grep"],
+      "commands": [
+        "cat", "cat *", "ls", "ls *", "head *", "tail *", "grep *", "find *",
+        "git status", "git status*", "git log", "git log*", "git diff", "git diff*", "git show*", "git branch", "git branch*", "git remote", "git remote*",
+        "git config --get*", "git ls-files*", "git blame*",
+        "pwd", "whoami", "which *", "tree *", "wc *", "du *", "df *",
+        "ps *", "top*", "env", "printenv*", "test *",
+        "file *", "stat *", "diff *", "sort *", "uniq *", "cut *",
+        "awk *", "sed -n*", "jq *",
+        "curl -s*", "wget --spider*", "ping -c*", "traceroute*",
+        "nslookup*", "dig*", "netstat*", "lsof*",
+        "docker ps*", "docker images*", "docker logs*", "docker inspect*",
+        "kubectl get*", "kubectl describe*", "kubectl logs*",
+        "npm list*", "npm view*", "npm outdated*", "npm audit*", "npm --version*",
+        "pnpm list*", "pnpm outdated*",
+        "yarn list*", "yarn outdated*",
+        "pip list*", "pip show*", "poetry show*",
+        "cargo search*", "go list*",
+        "java -version*", "javac -version*", "ruby --version*",
+        "php --version*", "python --version*", "node --version*",
+        "rustc --version*", "gcc --version*", "clang --version*",
+        "make --version*", "cmake --version*",
+        "uname*", "hostname*", "uptime*", "date*", "cal*",
+        "history*", "type*", "man *", "help *", "apropos*", "info*",
+        "done", "dir *", "findstr*", "where *"
+      ]
+    },
+    "edit": {
+      "tools": ["Edit", "Write"],
+      "commands": [
+        "echo * >*", "echo * >>*",
+        "cat * >*", "cat * >>*",
+        "mkdir *", "touch *", "mv *", "cp *",
+        "git add*", "git commit*",
+        "npm install*", "pnpm install*", "yarn install*", "yarn add*",
+        "pip install*"
+      ]
+    },
+    "risky": {
+      "tools": [],
+      "commands": [
+        "rm *", "*rm *",
+        "rmdir *", "*rmdir *",
+        "chmod *", "*chmod *",
+        "chown *", "*chown *",
+        "git push*", "*git push*",
+        "git pull*", "*git pull*",
+        "git reset*", "*git reset*",
+        "git rebase*", "*git rebase*",
+        "git merge*", "*git merge*",
+        "git checkout*", "*git checkout*",
+        "npm uninstall*", "*npm uninstall*",
+        "pnpm uninstall*", "*pnpm uninstall*",
+        "yarn remove*", "*yarn remove*",
+        "pip uninstall*", "*pip uninstall*",
+        "sudo *", "*sudo *"
+      ]
+    },
+    "useWeb": {
+      "tools": ["WebFetch", "WebSearch"],
+      "commands": ["curl *", "wget *"]
+    },
+    "useMcp": {
+      "tools": ["mcp__*"],
+      "commands": []
+    },
+    "globalAllow": {
+      "tools": [
+        "Task", "TaskGet", "TaskList", "TaskOutput", "TaskUpdate", "TaskCreate",
+        "AskUserQuestion", "EnterPlanMode", "ExitPlanMode"
+      ],
+      "commands": []
+    },
+    "globalDeny": {
+      "tools": [],
+      "commands": [
+        "git push --force*",
+        "rm -rf /*",
+        "rm -rf /etc*",
+        "rm -rf /usr*",
+        "rm -rf /var*",
+        "chmod -R 777 /*"
+      ]
+    }
+  },
+
+  "notifications": {
+    "_soundOptions": {
+      "macOS": ["Basso", "Blow", "Bottle", "Frog", "Funk", "Glass", "Hero", "Morse", "Ping", "Pop", "Purr", "Sosumi", "Submarine", "Tink"],
+      "windows": ["tada", "chimes", "chord", "ding", "notify", "recycle", "ringout"]
+    },
+    "enabled": 1,
+    "onCompletion": {
+      "enabled": 1,
+      "title": "Claude Code",
+      "message": "Task completed, waiting for next instruction",
+      "sound": "Glass",
+      "soundWindows": "Tada"
+    },
+    "onPermissionRequest": {
+      "enabled": 1,
+      "title": "Claude Code",
+      "message": "Approval required",
+      "sound": "Submarine",
+      "soundWindows": "Notify"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+# Claude Code local settings
+.claude/settings.local.json
+CLAUDE.md
+/.claude/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Logs
+*.log
+/tmp/claude-hook-debug.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Test files
+test-*.txt

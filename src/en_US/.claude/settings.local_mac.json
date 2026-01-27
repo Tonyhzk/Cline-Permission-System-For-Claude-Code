@@ -1,0 +1,42 @@
+{
+  "_description": {
+    "system": "macOS/Linux System"
+  },
+  "alwaysThinkingEnabled": false,
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR/.claude/hooks/unified-hook.py\"",
+            "statusMessage": "Checking permissions..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR/.claude/hooks/unified-hook.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR/.claude/hooks/unified-hook.py\"",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
